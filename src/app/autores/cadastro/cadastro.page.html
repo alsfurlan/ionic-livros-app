@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cadastro de Autores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #autorForm="ngForm" >
+    <ion-item>
+      <ion-label position="floating">Nome *:</ion-label>
+      <ion-input type="text"
+                 required
+                 minlength="5"
+                 id="nome"
+                 name="nome"
+                 [(ngModel)]="autor.nome"
+                 (keyup.enter)="salvar()"></ion-input>
+    </ion-item>
+    <ion-fab vertical="bottom"
+             horizontal="end"
+             slot="fixed">
+      <ion-fab-button type="submit" [disabled]="autorForm.form.invalid" (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>
