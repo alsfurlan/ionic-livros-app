@@ -8,53 +8,62 @@
 </ion-header>
 
 <ion-content>
+  <form #livroForm="ngForm" (ngSubmit)="salvar()">
+    <ion-item>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input [(ngModel)]="livro.nome"
+                 type="text"
+                 autofocus="true"
+                 name="nome"
+                 required
+                 minlength="3"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Título</ion-label>
-    <ion-input [(ngModel)]="livro.nome"
-               type="text"
-               autofocus="true"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">ISBN</ion-label>
+      <ion-input [(ngModel)]="livro.isbn"
+                 type="text"
+                 name="isbn"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">ISBN</ion-label>
-    <ion-input [(ngModel)]="livro.isbn"
-               type="text"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nº de Páginas</ion-label>
+      <ion-input [(ngModel)]="livro.paginas"
+                 type="number"
+                 name="paginas"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Nº de Páginas</ion-label>
-    <ion-input [(ngModel)]="livro.paginas"
-               type="number"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Autores</ion-label>
+      <ion-select [(ngModel)]="livro.autores"
+                  [compareWith]="compareWith"
+                  multiple="true"
+                  ok-text="Ok"
+                  cancel-text="Cancelar"
+                  name="autores">
+        <ion-select-option *ngFor="let autor of autores"
+                           [value]="autor">
+          {{autor.nome}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Autores</ion-label>
-    <ion-select [(ngModel)]="livro.autores"
-                [compareWith]="compareWith"
-                multiple="true"
-                ok-text="Ok"
-                cancel-text="Cancelar">
-      <ion-select-option *ngFor="let autor of autores"
-                         [value]="autor">
-        {{autor.nome}}
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">
+        Preço
+      </ion-label>
+      <ion-input [(ngModel)]="livro.preco"
+                 type="number"
+                 placeholder="R$ 100,00"
+                 name="preco"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating"> 
-      Preço
-    </ion-label>
-    <ion-input [(ngModel)]="livro.preco" type="number" placeholder="R$ 100,00"></ion-input>    
-  </ion-item>
-
-  <ion-fab vertical="bottom"
-           horizontal="end"
-           slot="fixed">
-    <ion-fab-button (click)="salvar()">
-      <ion-icon name="checkmark"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
+    <ion-fab vertical="bottom"
+             horizontal="end"
+             slot="fixed">
+      <ion-fab-button [disabled]="livroForm.form.invalid">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </form>
 </ion-content>

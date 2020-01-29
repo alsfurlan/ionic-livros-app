@@ -34,13 +34,13 @@ export class AutoresPage implements OnInit  {
       header: 'Confirmação de exclusão',
       message: `Deseja excluir o autor ${autor.nome}?`,
       buttons: [{
-        text: 'Cancelar'
-      }, {
-        text: 'Excluir',
+        text: 'Sim',
         handler: () => {
           this.autorService.excluir(autor);
           this.listar();
         }
+      }, {
+        text: 'Não'
       }]
     }).then((alert) => alert.present());
   }

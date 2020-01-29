@@ -1,1 +1,3 @@
-resetar slide ao editar e voltar
+imagens
+validação de formulários
+máscaras

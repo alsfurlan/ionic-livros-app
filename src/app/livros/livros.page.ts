@@ -31,15 +31,16 @@ export class LivrosPage implements OnInit {
     this.livros = this.livroService.getLivros();
   }
 
-  async exclusao(livro: Livro) {
+  async exclusao(livro: Livro, slidingItem: IonItemSliding) {
     const alert = await this.alertController.create({
       header: 'Confirmação de exclusão',
       message: `Deseja excluir o livro ${livro.nome}?`,
       buttons: [{
-        text: 'Cancelar'
-      }, {
-        text: 'Excluir',
+        text: 'Sim',
         handler: () => this.excluir(livro)
+      }, {
+        text: 'Não',
+        handler: () => slidingItem.close()
       }]
     });
     alert.present();
