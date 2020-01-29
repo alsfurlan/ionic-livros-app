@@ -10,13 +10,13 @@
 <ion-content>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let livro of livros">
+    <ion-item-sliding *ngFor="let livro of livros" #slidingItem>
       <ion-item-options side="start"
                         color="warning">
         <ion-item-option>
           <ion-icon slot="icon-only"
                     name="create"
-                    (click)="editar(livro)"></ion-icon>
+                    (click)="editar(livro, slidingItem)"></ion-icon>
         </ion-item-option>
       </ion-item-options>
       <ion-item>

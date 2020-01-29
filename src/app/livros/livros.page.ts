@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Livro } from '../models/livro.model';
 import { LivroService } from "../services/livro.service";
 import { AlertController, NavController } from '@ionic/angular';
+import { IonItemSliding } from "@ionic/angular";
+
 @Component({
   selector: 'app-livros',
   templateUrl: './livros.page.html',
@@ -14,7 +16,7 @@ export class LivrosPage implements OnInit {
   constructor(
     private livroService: LivroService,
     private alertController: AlertController,
-    private navController: NavController
+    private navController: NavController,
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,8 @@ export class LivrosPage implements OnInit {
     this.listar();
   }
 
-  editar(livro: Livro) {
+  editar(livro: Livro, slidingItem: IonItemSliding) {
     this.navController.navigateForward([`livros/cadastro/${livro.id}`]);    
+    slidingItem.close();
   }
 }
