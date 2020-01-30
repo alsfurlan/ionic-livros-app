@@ -8,13 +8,13 @@ import { AlertController, NavController } from '@ionic/angular';
   templateUrl: './autores.page.html',
   styleUrls: ['./autores.page.scss'],
 })
-export class AutoresPage implements OnInit  {
-  
+export class AutoresPage implements OnInit {
+
   public autores: Autor[];
-  
+
   constructor(
-    private autorService:AutorService,
-    private navController:NavController,
+    private autorService: AutorService,
+    private navController: NavController,
     private alertControler: AlertController
   ) { }
 
@@ -25,27 +25,28 @@ export class AutoresPage implements OnInit  {
     this.listar();
   }
 
-  editar(autor:Autor) {
+  editar(autor: Autor) {
     this.navController.navigateForward([`/autores/cadastro/${autor.id}`]);
   }
 
-  excluir(autor:Autor) {
+  exclusao(autor: Autor) {
     this.alertControler.create({
       header: 'Confirmação de exclusão',
       message: `Deseja excluir o autor ${autor.nome}?`,
       buttons: [{
         text: 'Sim',
-        handler: () => {
-          this.autorService.excluir(autor);
-          this.listar();
-        }
+        handler: () => this.excluir(autor)
       }, {
         text: 'Não'
       }]
     }).then((alert) => alert.present());
   }
 
+  excluir(autor: Autor) {
+    this.autorService.excluir(autor).subscribe(() => this.listar());
+  }
+
   listar() {
-    this.autores = this.autorService.getAutores();
+    this.autorService.getAutores().subscribe(autores => this.autores = autores);
   }
 }

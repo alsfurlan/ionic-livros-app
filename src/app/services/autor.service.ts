@@ -1,47 +1,39 @@
 
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Autor } from "../models/autor.model";
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AutorService {
 
-    static contador = 3;
+    uri: string;
 
-    private autores: Autor[];
-
-    constructor() {
-        const a1 = new Autor(1, 'Douglas Cockford');
-        const a2 = new Autor(2, 'David Flanagan');
-        this.autores = [a1, a2];
+    constructor(private httpClient: HttpClient) {
+        this.uri = 'http://localhost:3000/autores';
     }
 
-    public getAutores() {
-        return [...this.autores];
+    getAutores() {
+        return this.httpClient.get<Autor[]>(this.uri);
     }
 
-    public salvar(autor: Autor) {
-        if(autor && autor.id) {
-            this.atualizar(autor);
-        } else {
-            this.adicionar(autor);
-        }
+    salvar(autor: Autor) {
+        return (autor && autor.id) ? this.atualizar(autor): this.adicionar(autor);
     }
 
     private atualizar(autor: Autor) {
-        const index = this.autores.findIndex((a) => a.id === autor.id);            
-        this.autores[index] = autor;
+        return this.httpClient.put(`${this.uri}/${autor.id}`, autor);
     }
 
     private adicionar(autor: Autor) {
-        autor.id = AutorService.contador++;
-        this.autores = [...this.autores, autor];
-    }
- 
-    public excluir(autor: Autor) {
-        this.autores = this.autores.filter((a) => a.id !== autor.id);
+        return this.httpClient.post(this.uri, autor);
     }
 
-    public getAutor(id: number) {
-        return { ...this.autores.find((a) => a.id === id) };
+    excluir(autor: Autor) {
+        return this.httpClient.delete(`${this.uri}/${autor.id}`);
+    }
+
+    getAutor(id: number) {
+        return this.httpClient.get<Autor>(`${this.uri}/${id}`);
     }
 }

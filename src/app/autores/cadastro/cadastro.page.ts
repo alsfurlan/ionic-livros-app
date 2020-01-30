@@ -18,20 +18,25 @@ export class CadastroPage implements OnInit {
     private navController : NavController,
     private route: ActivatedRoute
   ) {
+    this.autor = new Autor();
   }
 
   ngOnInit() {
     const id = parseInt(this.route.snapshot.params['id']);
     if(id) {
-      this.autor = this.autorService.getAutor(id);      
-    } else {
-      this.autor = new Autor();
-    }
+      this.autorService.getAutor(id).subscribe({
+        next: autor => this.autor = autor
+      });      
+    } 
   }
 
   salvar(){
-    this.autorService.salvar(this.autor);
-    this.navController.navigateForward(['autores']);    
+    this.autorService.salvar(this.autor).subscribe({
+      next: () => this.redirecionarLista()
+    });
   }
 
+  redirecionarLista() {
+    this.navController.navigateForward(['autores']);
+  }
 }

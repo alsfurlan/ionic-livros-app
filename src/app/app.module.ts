@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { registerLocaleData } from "@angular/common";
 import pt from "@angular/common/locales/pt";
 import ptExtra from "@angular/common/locales/extra/pt";
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(pt, 'pt', ptExtra);
 
 @NgModule({
@@ -20,7 +21,8 @@ registerLocaleData(pt, 'pt', ptExtra);
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
