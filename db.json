@@ -1,16 +1,37 @@
 {
   "autores": [
     {
-      "nome": "Anderson",
-      "id": 1
+      "nome": "David Flanagan",
+      "id": 1,
+      "livroId": 1
     },
     {
-      "nome": "Eduardo",
-      "id": 2
+      "nome": "Autor 2",
+      "id": 2,
+      "livroId": 1
     },
     {
-      "nome": "Thiago 22",
-      "id": 3
+      "nome": "Douglas Cockford",
+      "id": 3,
+      "livroId": 2
+    }
+  ],
+  "livros": [
+    {
+      "id": 1,
+      "nome": "JavaScript: The Good Parts",
+      "isbn": "9780596517748",
+      "paginas": 75,
+      "preco": 120.50,
+      "imagem": "assets/images/1.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "JavaScript: The Definitive Guide",
+      "isbn": "0596805527",
+      "paginas": 1078,
+      "preco": 150.20,
+      "imagem": "assets/images/2.jpg"
     }
   ]
 }

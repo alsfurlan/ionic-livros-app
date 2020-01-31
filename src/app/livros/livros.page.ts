@@ -28,7 +28,7 @@ export class LivrosPage implements OnInit {
   }
 
   listar() {
-    this.livros = this.livroService.getLivros();
+    this.livroService.getLivros().subscribe(livros => this.livros = livros);
   }
 
   async exclusao(livro: Livro, slidingItem: IonItemSliding) {

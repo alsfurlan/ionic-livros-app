@@ -2,57 +2,50 @@ import { Injectable } from '@angular/core';
 import { Livro } from "../models/livro.model";
 import { Autor } from "../models/autor.model";
 import { AutorService } from "./autor.service";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LivroService {
-  
-  private livros: Livro[];
-  
-  constructor(private autorService: AutorService) { 
+  uri: string;
 
-    const a1 = this.autorService.getAutor(1);
-    const a2 = this.autorService.getAutor(2);
-    
-    const l1 = new Livro('JavaScript: The Good Parts', '9780596517748', 153, 75.00, [a1], 'assets/images/1.jpg');
-    l1.id = '1';
-    const l2 = new Livro('JavaScript: The Definitive Guide', '0596805527', 1078, 150.00, [a2], 'assets/images/2.jpg');
-    l2.id = '2';
-    
-    this.livros = [l1, l2];
+  constructor(private http: HttpClient) {
+    this.uri = 'http://localhost:3000/livros'
   }
 
   getLivros() {
-    return [...this.livros];
+    const params = { _embed: 'autores' };
+    return this.http.get<Livro[]>(`${this.uri}`, { params });
   }
 
   salvar(livro: Livro) {
-    const livroEncontrado = this.getLivro(livro.id);
-    if(livroEncontrado) {
-      this.atualizar(livroEncontrado, livro);
-    } else {
-      this.adicionar(livro);
-    }
-    
+    //const livroEncontrado = this.getLivro(livro.id);
+    //if(livroEncontrado) {
+    //this.atualizar(livroEncontrado, livro);
+    //} else {
+    //this.adicionar(livro);
+    //}
+
   }
 
   atualizar(livroEncontrado: Livro, livro: Livro) {
-    livroEncontrado = livro;
+    //livroEncontrado = livro;
   }
-  
+
   adicionar(livro: Livro) {
-    this.livros = [...this.livros, livro];
+    //this.livros = [...this.livros, livro];
   }
 
   excluir(livro: Livro) {
-    this.livros = this.livros.filter(l => l.id !== livro.id);
+    //this.livros = this.livros.filter(l => l.id !== livro.id);
   }
 
   getLivro(id: string): Livro {
-    return this.livros.find(l => l.id === id);
+    //return this.livros.find(l => l.id === id);
+    return null;
   }
-  
+
 
 }
 

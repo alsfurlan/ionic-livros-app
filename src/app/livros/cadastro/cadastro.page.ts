@@ -30,7 +30,7 @@ export class CadastroPage implements OnInit {
 
   ngOnInit() {
     this.inicializar();
-    this.autores = this.autorService.getAutores();
+   // this.autores = this.autorService.getAutores();
   }
 
   compareWith(o1, o2) {
