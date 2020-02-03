@@ -23,14 +23,18 @@ export class CadastroPage implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
+  ngOnInit() {
+    this.inicializar();
+    this.carregarAutores();
+  }
+
+  carregarAutores() {
+    this.autorService.getAutores().subscribe(autores => this.autores = autores);
+  }
+
   private inicializar() {
     const id = this.activatedRoute.snapshot.params.id;
     this.livro = id ? this.livroService.getLivro(id) : new Livro();
-  }
-
-  ngOnInit() {
-    this.inicializar();
-   // this.autores = this.autorService.getAutores();
   }
 
   compareWith(o1, o2) {
@@ -38,7 +42,10 @@ export class CadastroPage implements OnInit {
   }
 
   salvar() {
-    this.livroService.salvar(this.livro);
+    this.livroService.salvar(this.livro).subscribe(() => this.redirecionarLivros());
+  }
+
+  redirecionarLivros() {
     this.navController.navigateForward(['livros']);
   }
 

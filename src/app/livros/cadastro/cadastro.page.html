@@ -61,7 +61,7 @@
     <ion-fab vertical="bottom"
              horizontal="end"
              slot="fixed">
-      <ion-fab-button [disabled]="livroForm.form.invalid">
+      <ion-fab-button [disabled]="livroForm.form.invalid" (click)="salvar()">
         <ion-icon name="checkmark"></ion-icon>
       </ion-fab-button>
     </ion-fab>

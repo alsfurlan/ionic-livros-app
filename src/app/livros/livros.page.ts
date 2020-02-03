@@ -47,8 +47,7 @@ export class LivrosPage implements OnInit {
   }
 
   excluir(livro:Livro) {
-    this.livroService.excluir(livro);
-    this.listar();
+    this.livroService.excluir(livro).subscribe(() => this.listar());
   }
 
   editar(livro: Livro, slidingItem: IonItemSliding) {

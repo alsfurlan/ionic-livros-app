@@ -20,25 +20,19 @@ export class LivroService {
   }
 
   salvar(livro: Livro) {
-    //const livroEncontrado = this.getLivro(livro.id);
-    //if(livroEncontrado) {
-    //this.atualizar(livroEncontrado, livro);
-    //} else {
-    //this.adicionar(livro);
-    //}
-
+    return (livro && livro.id) ? this.atualizar(livro) : this.adicionar(livro);
   }
 
-  atualizar(livroEncontrado: Livro, livro: Livro) {
-    //livroEncontrado = livro;
+  private atualizar(livro: Livro) {
+    return this.http.put(`${this.uri}/${livro.id}`, livro);
   }
 
-  adicionar(livro: Livro) {
-    //this.livros = [...this.livros, livro];
+  private adicionar(livro: Livro) {
+    return this.http.post(`${this.uri}`, livro);
   }
 
   excluir(livro: Livro) {
-    //this.livros = this.livros.filter(l => l.id !== livro.id);
+    return this.http.delete(`${this.uri}/${livro.id}`);
   }
 
   getLivro(id: string): Livro {

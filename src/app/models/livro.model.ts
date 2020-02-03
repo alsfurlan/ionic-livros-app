@@ -9,8 +9,8 @@ export class Livro {
     preco: number; 
     imagem: string;
     
-    constructor(nome?: string, isbn?: string, paginas?:number, preco?:number, autores?: Autor[], imagem?: string) {
-        this.id = Date.now().toString();
+    constructor(id?: string, nome?: string, isbn?: string, paginas?:number, preco?:number, autores?: Autor[], imagem?: string) {
+        this.id = id;
         this.nome = nome;
         this.isbn = isbn;
         this.paginas = paginas;
