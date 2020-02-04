@@ -14,7 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 export class CadastroPage implements OnInit {
 
   private autores: Autor[];
-  private livro: Livro;
+  livro: Livro = {
+    nome: '',
+    isbn: '',
+    autores: [],
+    paginas: 0,
+    preco: 0,
+    imagem: ''
+  };;
 
   constructor(
     private autorService: AutorService,
@@ -34,7 +41,9 @@ export class CadastroPage implements OnInit {
 
   private inicializar() {
     const id = this.activatedRoute.snapshot.params.id;
-    this.livro = id ? this.livroService.getLivro(id) : new Livro();
+    if(id) {
+      this.livroService.getLivro(id).subscribe(l => this.livro = l);
+    } 
   }
 
   compareWith(o1, o2) {

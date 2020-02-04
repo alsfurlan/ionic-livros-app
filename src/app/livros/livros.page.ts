@@ -23,7 +23,6 @@ export class LivrosPage implements OnInit {
   }
 
   ionViewWillEnter() {
-
     this.listar();
   }
 

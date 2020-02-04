@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Livro } from "../models/livro.model";
-import { Autor } from "../models/autor.model";
-import { AutorService } from "./autor.service";
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -35,11 +33,8 @@ export class LivroService {
     return this.http.delete(`${this.uri}/${livro.id}`);
   }
 
-  getLivro(id: string): Livro {
-    //return this.livros.find(l => l.id === id);
-    return null;
+  getLivro(id: string) {
+    return this.http.get<Livro>(`${this.uri}/${id}`);
   }
-
-
 }
 
