@@ -6,11 +6,6 @@
       "livroId": 1
     },
     {
-      "nome": "Autor 2",
-      "id": 2,
-      "livroId": 1
-    },
-    {
       "nome": "Douglas Cockford",
       "id": 3,
       "livroId": 2
@@ -22,7 +17,7 @@
       "nome": "JavaScript: The Good Parts",
       "isbn": "9780596517748",
       "paginas": 75,
-      "preco": 120.50,
+      "preco": 120.5,
       "imagem": "assets/images/1.jpg"
     },
     {
@@ -30,7 +25,7 @@
       "nome": "JavaScript: The Definitive Guide",
       "isbn": "0596805527",
       "paginas": 1078,
-      "preco": 150.20,
+      "preco": 150.2,
       "imagem": "assets/images/2.jpg"
     }
   ]
